@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛡️ مساعد أمان فيسبوك</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛡️ مساعد أمان فيسبوك</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- الهيدر -->
-        <header>
-            <h1>🛡️ مساعد أمان فيسبوك</h1>
-            <p class="subtitle">خلينا نأمّن حسابك خطوة بخطوة</p>
-        </header>
+  <div class="container">
+    <header>
+      <h1>🛡️ مساعد أمان فيسبوك</h1>
+      <p class="subtitle">خلينا نأمّن حسابك خطوة بخطوة</p>
+    </header>
 
-        <!-- Dashboard -->
-        <section class="dashboard">
-            <div class="score-card">
-                <div class="score-circle" id="scoreCircle">
-                    <span id="scoreNumber">0</span>
-                    <span class="score-label">%</span>
-                </div>
-                <div>
-                    <div id="scoreStatus" class="score-status">جاري التقييم...</div>
-                    <div class="score-detail">آخر تحديث: <span id="lastUpdate">الآن</span></div>
-                </div>
-            </div>
-            <div class="progress-card">
-                <div class="progress-label">
-                    <span>التقدم</span>
-                    <span id="progressText">0 / 0</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
-                </div>
-                <div class="progress-stats">
-                    <span>✅ <span id="completedCount">0</span> مكتملة</span>
-                    <span>⏳ <span id="pendingCount">0</span> متبقية</span>
-                </div>
-            </div>
-        </section>
+    <!-- روابط سريعة -->
+    <nav class="nav-links">
+      <ul>
+        <li><a href="#task-2fa">🔐 المصادقة الثنائية</a></li>
+        <li><a href="#task-password">🔑 كلمة المرور</a></li>
+        <li><a href="#task-checkup">✅ الفحص الأمني الشامل</a></li>
+      </ul>
+    </nav>
 
-        <!-- زر إعادة تعيين -->
-        <button id="resetBtn" class="reset-btn">🔄 إعادة تعيين التقدم</button>
-
-        <!-- قائمة المهام -->
-        <section class="task-section">
-            <h2>📋 قائمة المهام الأمنية</h2>
-            <div id="taskList"></div>
-        </section>
-
-        <!-- زر فحص سريع -->
-        <button id="quickScanBtn" class="scan-btn">🔍 فحص سريع</button>
-
-        <!-- ملخص -->
-        <div id="summaryBox" class="summary-box" style="display:none;">
-            <h3>📊 ملخص الأمان</h3>
-            <div id="summaryContent"></div>
+    <!-- لوحة التحكم -->
+    <section class="dashboard">
+      <div class="score-card">
+        <div class="score-circle" id="scoreCircle">
+          <span id="scoreNumber">0</span>
+          <span class="score-label">%</span>
         </div>
-
-        <div class="note">
-            💡 <strong>ملاحظة:</strong> يتم حفظ تقدمك تلقائيًا في متصفحك.
-            لن نطلب منك كلمة السر أبدًا.
+        <div>
+          <div id="scoreStatus" class="score-status">جاري التقييم...</div>
+          <div class="score-detail">آخر تحديث: <span id="lastUpdate">الآن</span></div>
         </div>
+      </div>
+      <div class="progress-card">
+        <div class="progress-label">
+          <span>التقدم</span>
+          <span id="progressText">0 / 0</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+        <div class="progress-stats">
+          <span>✅ <span id="completedCount">0</span> مكتملة</span>
+          <span>⏳ <span id="pendingCount">0</span> متبقية</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- زر إعادة تعيين -->
+    <button id="resetBtn" class="reset-btn">🔄 إعادة تعيين التقدم</button>
+
+    <!-- قائمة المهام -->
+    <section class="task-section">
+      <h2>📋 قائمة المهام الأمنية</h2>
+      <div id="taskList"></div>
+    </section>
+
+    <!-- زر فحص سريع -->
+    <button id="quickScanBtn" class="scan-btn">🔍 فحص سريع</button>
+
+    <!-- ملخص -->
+    <div id="summaryBox" class="summary-box" style="display:none;">
+      <h3>📊 ملخص الأمان</h3>
+      <div id="summaryContent"></div>
     </div>
-    <script src="script.js"></script>
+
+    <div class="note">
+      💡 <strong>ملاحظة:</strong> يتم حفظ تقدمك تلقائيًا في متصفحك.
+      لن نطلب منك كلمة السر أبدًا.
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
