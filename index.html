@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🛡️ حماية صفحة الفيسبوك</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- الهيدر -->
+        <header>
+            <h1>🛡️ حماية صفحة الفيسبوك</h1>
+            <p class="subtitle">اختر الإعداد اللي عايز تظبطه، وهنوديك له مباشرة</p>
+        </header>
+
+        <!-- القائمة الرئيسية -->
+        <div class="menu">
+            <button class="btn" data-url="https://www.facebook.com/settings?tab=security&section=two_factor">
+                <span class="icon">🔐</span>
+                <div class="btn-text">
+                    <span class="title">المصادقة الثنائية (2FA)</span>
+                    <span class="desc">أقوى حماية للحساب - هتحتاج كود كل مرة تدخل</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+
+            <button class="btn" data-url="https://www.facebook.com/settings?tab=security&section=sessions">
+                <span class="icon">📱</span>
+                <div class="btn-text">
+                    <span class="title">مراجعة الأجهزة النشطة</span>
+                    <span class="desc">شوف مين الداخل على حسابك من أي جهاز</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+
+            <button class="btn" data-url="https://www.facebook.com/settings?tab=security&section=login_alerts">
+                <span class="icon">🔔</span>
+                <div class="btn-text">
+                    <span class="title">تنبيهات تسجيل الدخول</span>
+                    <span class="desc">نبهني لو حد دخل من جهاز جديد</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+
+            <button class="btn" data-url="https://www.facebook.com/settings?tab=security&section=password">
+                <span class="icon">🔑</span>
+                <div class="btn-text">
+                    <span class="title">تغيير كلمة المرور</span>
+                    <span class="desc">خلي كلمة السر قوية ومتكررش في مكان تاني</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+
+            <button class="btn" data-url="https://www.facebook.com/settings?tab=admin_roles">
+                <span class="icon">👥</span>
+                <div class="btn-text">
+                    <span class="title">إدارة الأدمن على الصفحة</span>
+                    <span class="desc">شوف مين عنده صلاحيات وارفع اللي مش محتاج</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+
+            <button class="btn" data-url="https://www.facebook.com/securitycheckup">
+                <span class="icon">✅</span>
+                <div class="btn-text">
+                    <span class="title">الفحص الأمني الشامل</span>
+                    <span class="desc">أداة فيسبوك بتمشيك على كل حاجة خطوة بخطوة</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+        </div>
+
+        <!-- زر الطوارئ -->
+        <div class="emergency-section">
+            <button id="emergencyBtn" class="btn emergency">
+                <span class="icon">🚨</span>
+                <div class="btn-text">
+                    <span class="title">حالة طوارئ - قفل الصفحة فوراً</span>
+                    <span class="desc">اضغط لو حاسس إن صفحتك في خطر - هنوديك تقفل كل الصلاحيات</span>
+                </div>
+                <span class="arrow">←</span>
+            </button>
+        </div>
+
+        <!-- الفوتر -->
+        <footer>
+            <p>🔒 كل الإعدادات هتتغير بإيديك جوه فيسبوك - احنا بس بنوديك</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
