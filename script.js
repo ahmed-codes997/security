@@ -5,25 +5,25 @@ const tasks = [
         click: '👉 اضغط "تفعيل"',
         badge: 'آخر خطوة',
         badgeClass: '',
-        link: 'https://www.facebook.com/settings?tab=security&section=two_factor',
+        link: 'https://accountscenter.facebook.com/password_and_security/two_factor',
         btnClass: ''
     },
     {
         icon: '📱',
         name: 'مراجعة الأجهزة',
-        click: '👉 اضغط "تسجيل الخروج"',
+        click: '👉 راجع الأجهزة وسجّل الخروج من الغريب',
         badge: 'شوف واخلع',
         badgeClass: 'red',
-        link: 'https://www.facebook.com/settings?tab=security&section=sessions',
+        link: 'https://accountscenter.facebook.com/password_and_security/login_activity',
         btnClass: 'green'
     },
     {
         icon: '🔔',
         name: 'تنبيهات الدخول',
-        click: '👉 فعّل المفتاح',
+        click: '👉 فعّل تنبيهات الدخول',
         badge: 'آخر خطوة',
         badgeClass: '',
-        link: 'https://www.facebook.com/settings?tab=security&section=alerts',
+        link: 'https://accountscenter.facebook.com/password_and_security/login_alerts',
         btnClass: ''
     },
     {
@@ -32,22 +32,22 @@ const tasks = [
         click: '👉 اكتب الجديدة واضغط "حفظ"',
         badge: 'آخر خطوة',
         badgeClass: 'orange',
-        link: 'https://www.facebook.com/settings?tab=security&section=password',
+        link: 'https://accountscenter.facebook.com/password_and_security/password/change',
         btnClass: 'orange'
     },
     {
         icon: '👥',
         name: 'إدارة الأدمن',
-        click: '👉 اضغط "إزالة"',
+        click: '👉 افتح الوصول إلى الصفحة وأزل الشخص',
         badge: 'شيل الزيادة',
         badgeClass: 'red',
-        link: 'https://www.facebook.com/settings?tab=security&section=admin_roles',
+        link: 'https://www.facebook.com/settings',
         btnClass: 'green'
     },
     {
         icon: '✅',
         name: 'الفحص الأمني',
-        click: '👉 اتبع التعليمات',
+        click: '👉 اتبع تعليمات الفحص',
         badge: 'آخر خطوة',
         badgeClass: 'orange',
         link: 'https://www.facebook.com/securitycheckup',
@@ -55,28 +55,3 @@ const tasks = [
         special: true
     }
 ];
-
-const taskList = document.getElementById('taskList');
-
-tasks.forEach(task => {
-    const div = document.createElement('div');
-    div.className = 'task';
-    if (task.special) {
-        div.style.borderColor = '#ffc107';
-        div.style.background = '#fffde7';
-    }
-
-    div.innerHTML = `
-        <div class="info">
-            <span class="icon">${task.icon}</span>
-            <span class="name">${task.name}</span>
-            <span class="what-to-click">${task.click}</span>
-            <span class="badge ${task.badgeClass}">${task.badge}</span>
-        </div>
-        <a href="${task.link}" target="_blank" class="btn-go ${task.btnClass}">🌐 افتح</a>
-    `;
-
-    taskList.appendChild(div);
-});
-
-console.log('✅ الصفحة جاهزة! اضغط على أي زر "افتح" - هتوصلك لآخر خطوة في فيسبوك');
