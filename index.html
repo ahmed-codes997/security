@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 أوصلك لآخر خطوة</title>
+    <title>🛡️ المرشد الأمني الذكي</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🎯 أوصلك لآخر خطوة</h1>
-        <p class="subtitle">✅ اضغط على الزر - هتلاقي نفسك قدام الزر اللي محتاجه</p>
+        <h1>🛡️ المرشد الأمني الذكي</h1>
+        <p class="subtitle">✅ راقب حسابك وتأكد من أمانه</p>
 
-        <!-- تذكير أمان -->
-        <div class="tip-box">
-            <span>🔒</span>
-            <div>
-                <strong>تأكد إنك مسجل دخولك في فيسبوك</strong> على هذا المتصفح قبل الضغط على أي رابط.
-                كل الروابط تبدأ بـ <code>facebook.com</code> أو <code>accountscenter.facebook.com</code>
+        <!-- لوحة التحكم -->
+        <div class="dashboard">
+            <div class="status-card safe">
+                <span class="status-icon">🟢</span>
+                <div>
+                    <strong>حالة الحساب</strong>
+                    <span id="accountStatus">جاري الفحص...</span>
+                </div>
+            </div>
+            <div class="status-card">
+                <span class="status-icon">📊</span>
+                <div>
+                    <strong>آخر فحص</strong>
+                    <span id="lastCheck">الآن</span>
+                </div>
             </div>
         </div>
 
-        <div id="taskList">
-            <!-- هتتgenerate من JavaScript -->
-        </div>
+        <!-- زر الفحص السريع -->
+        <button id="scanBtn" class="scan-btn">🔍 افحص حسابي الآن</button>
+
+        <!-- قائمة المهام -->
+        <div id="taskList"></div>
+
+        <!-- نتائج المراقبة -->
+        <div id="monitorResults" class="monitor-results"></div>
 
         <div class="note">
-            💡 <strong>المهم:</strong> لما تفتح فيسبوك، هتلاقي نفسك <strong>قدام الزر</strong> اللي محتاجه بالضبط! <br>
-            مش هتلف ولا هتخبط - اضغط على الزر اللي مكتوب جنبه <strong>"👉"</strong> وخلاص!
+            💡 <strong>المهم:</strong> الأداة تراقب إعداداتك وتنبهك لو في أي مشكلة!
         </div>
     </div>
     <script src="script.js"></script>
