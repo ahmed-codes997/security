@@ -1,37 +1,82 @@
-// لما المستخدم يضغط على أي زر
-document.querySelectorAll('.btn[data-url]').forEach(button => {
-    button.addEventListener('click', function () {
-        const url = this.getAttribute('data-url');
-
-        // نطلب تأكيد قبل الفتح
-        const confirmMessage = '🔐 هتفتح الإعدادات في فيسبوك\n\n' +
-            'تأكد إنك داخل على حسابك الأول، وبعدين اظبط الإعداد بنفسك.\n\n' +
-            'متابع؟';
-
-        if (confirm(confirmMessage)) {
-            // نفتح الرابط في تبويب جديد
-            window.open(url, '_blank');
-        }
-    });
-});
-
-// زر الطوارئ
-document.getElementById('emergencyBtn').addEventListener('click', function () {
-    const url = 'https://www.facebook.com/settings?tab=admin_roles';
-
-    const emergencyMessage = '🚨 **تحذير طوارئ** 🚨\n\n' +
-        'هتفتح صفحة إدارة الأدمن.\n' +
-        'من هناك تقدر:\n' +
-        '• تشوف مين عنده صلاحيات\n' +
-        '• تشيل أي حد مش موثوق\n' +
-        '• تغير الصلاحيات للقراءة بس\n\n' +
-        '⚠️ هل أنت متأكد إنك عايز تروح هناك دلوقتي؟';
-
-    if (confirm(emergencyMessage)) {
-        window.open(url, '_blank');
+const tasks = [
+    {
+        icon: '🔐',
+        name: 'المصادقة الثنائية',
+        click: '👉 اضغط "تفعيل"',
+        badge: 'آخر خطوة',
+        badgeClass: '',
+        link: 'https://www.facebook.com/settings?tab=security&section=two_factor',
+        btnClass: ''
+    },
+    {
+        icon: '📱',
+        name: 'مراجعة الأجهزة',
+        click: '👉 اضغط "تسجيل الخروج"',
+        badge: 'شوف واخلع',
+        badgeClass: 'red',
+        link: 'https://www.facebook.com/settings?tab=security&section=sessions',
+        btnClass: 'green'
+    },
+    {
+        icon: '🔔',
+        name: 'تنبيهات الدخول',
+        click: '👉 فعّل المفتاح',
+        badge: 'آخر خطوة',
+        badgeClass: '',
+        link: 'https://www.facebook.com/settings?tab=security&section=alerts',
+        btnClass: ''
+    },
+    {
+        icon: '🔑',
+        name: 'تغيير كلمة المرور',
+        click: '👉 اكتب الجديدة واضغط "حفظ"',
+        badge: 'آخر خطوة',
+        badgeClass: 'orange',
+        link: 'https://www.facebook.com/settings?tab=security&section=password',
+        btnClass: 'orange'
+    },
+    {
+        icon: '👥',
+        name: 'إدارة الأدمن',
+        click: '👉 اضغط "إزالة"',
+        badge: 'شيل الزيادة',
+        badgeClass: 'red',
+        link: 'https://www.facebook.com/settings?tab=security&section=admin_roles',
+        btnClass: 'green'
+    },
+    {
+        icon: '✅',
+        name: 'الفحص الأمني',
+        click: '👉 اتبع التعليمات',
+        badge: 'آخر خطوة',
+        badgeClass: 'orange',
+        link: 'https://www.facebook.com/securitycheckup',
+        btnClass: 'orange',
+        special: true
     }
+];
+
+const taskList = document.getElementById('taskList');
+
+tasks.forEach(task => {
+    const div = document.createElement('div');
+    div.className = 'task';
+    if (task.special) {
+        div.style.borderColor = '#ffc107';
+        div.style.background = '#fffde7';
+    }
+
+    div.innerHTML = `
+        <div class="info">
+            <span class="icon">${task.icon}</span>
+            <span class="name">${task.name}</span>
+            <span class="what-to-click">${task.click}</span>
+            <span class="badge ${task.badgeClass}">${task.badge}</span>
+        </div>
+        <a href="${task.link}" target="_blank" class="btn-go ${task.btnClass}">🌐 افتح</a>
+    `;
+
+    taskList.appendChild(div);
 });
 
-// نطبع رسالة ترحيب في الكونسول عشان المطورين
-console.log('🛡️ تطبيق حماية صفحة الفيسبوك شغال ✅');
-console.log('📌 لو عايز تعدل الروابط، ابحث عن data-url في الـ HTML');
+console.log('✅ الصفحة جاهزة! اضغط على أي زر "افتح" - هتوصلك لآخر خطوة في فيسبوك');

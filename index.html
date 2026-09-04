@@ -1,97 +1,25 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>🛡️ حماية صفحة الفيسبوك</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 أوصلك لآخر خطوة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="container">
+    <h1>🎯 أوصلك لآخر خطوة</h1>
+    <p class="subtitle">✅ اضغط على الزر - هتلاقي نفسك قدام الزر اللي محتاجه</p>
 
-    <!-- الهيدر -->
-    <header>
-        <h1>🛡️ حماية صفحة الفيسبوك</h1>
-        <p class="subtitle">اختر الإعداد، واتبع الخطوات جنب فيسبوك</p>
-    </header>
-
-    <!-- القائمة الرئيسية -->
-    <div id="menu">
-        <button class="btn" onclick="showPage('2fa')">
-            <span class="icon">🔐</span>
-            <div class="btn-text">
-                <span class="title">المصادقة الثنائية (2FA)</span>
-                <span class="desc">افتحها مع التعليمات</span>
-            </div>
-            <span class="arrow">←</span>
-        </button>
-        <button class="btn" onclick="showPage('sessions')">
-            <span class="icon">📱</span>
-            <div class="btn-text">
-                <span class="title">مراجعة الأجهزة النشطة</span>
-                <span class="desc">افتحها مع التعليمات</span>
-            </div>
-            <span class="arrow">←</span>
-        </button>
-        <button class="btn" onclick="showPage('alerts')">
-            <span class="icon">🔔</span>
-            <div class="btn-text">
-                <span class="title">تنبيهات تسجيل الدخول</span>
-                <span class="desc">افتحها مع التعليمات</span>
-            </div>
-            <span class="arrow">←</span>
-        </button>
-        <button class="btn" onclick="showPage('password')">
-            <span class="icon">🔑</span>
-            <div class="btn-text">
-                <span class="title">تغيير كلمة المرور</span>
-                <span class="desc">افتحها مع التعليمات</span>
-            </div>
-            <span class="arrow">←</span>
-        </button>
-        <button class="btn" onclick="showPage('admins')">
-            <span class="icon">👥</span>
-            <div class="btn-text">
-                <span class="title">إدارة الأدمن على الصفحة</span>
-                <span class="desc">افتحها مع التعليمات</span>
-            </div>
-            <span class="arrow">←</span>
-        </button>
-        <button class="btn" onclick="showPage('checkup')">
-            <span class="icon">✅</span>
-            <div class="btn-text">
-                <span class="title">الفحص الأمني الشامل</span>
-                <span class="desc">افتحه مع التعليمات</span>
-            </div>
-            <span class="arrow">←</span>
-        </button>
+    <div id="taskList">
+        <!-- هتتgenerate من JavaScript -->
     </div>
 
-    <!-- هنا هتظهر الشاشة المقسمة (فيسبوك + التعليمات) -->
-    <div id="split-view" style="display:none;">
-        <button class="back-btn" onclick="backToMenu()">← رجوع للقائمة</button>
-        <div class="split-layout">
-            <!-- الجزء الأيمن: فيسبوك -->
-            <div class="facebook-frame">
-                <iframe id="fbFrame" src=""></iframe>
-            </div>
-            <!-- الجزء الأيسر: التعليمات -->
-            <div class="instructions">
-                <h2 id="instruction-title">🔐 المصادقة الثنائية</h2>
-                <div id="step-content">
-                    <p class="step">⚡ هتظهر التعليمات هنا خطوة بخطوة</p>
-                </div>
-                <button id="next-btn" class="btn" onclick="nextStep()">▶ الخطوة التالية</button>
-            </div>
-        </div>
+    <div class="note">
+        💡 <strong>المهم:</strong> لما تفتح فيسبوك، هتلاقي نفسك <strong>قدام الزر</strong> اللي محتاجه بالضبط! <br>
+        مش هتلف ولا هتخبط - اضغط على الزر اللي مكتوب جنبه <strong>"👉"</strong> وخلاص!
     </div>
-
-    <footer>
-        <p>🔒 كل الإعدادات هتتغير بإيديك جوه فيسبوك - احنا بنوديك ونشرحلك</p>
-    </footer>
 </div>
-
 <script src="script.js"></script>
 </body>
 </html>
