@@ -37,6 +37,30 @@ h1 {
     font-size: 1.1em;
 }
 
+/* صندوق التذكير */
+.tip-box {
+    background: #e8f0fe;
+    border-right: 4px solid #1877f2;
+    border-radius: 10px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #1a1a2e;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.tip-box span {
+    font-size: 1.5em;
+}
+.tip-box code {
+    background: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #1877f2;
+}
+
 .task {
     background: #f8f9fa;
     border-radius: 12px;
@@ -93,42 +117,29 @@ h1 {
     display: inline-block;
     min-width: 80px;
     text-align: center;
+    transition: 0.2s;
 }
 
 .task .btn-go:hover {
-    background: #166fe5;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
 }
 
 .task .btn-go.green {
     background: #28a745;
 }
-
 .task .btn-go.green:hover {
     background: #218838;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
 }
 
 .task .btn-go.orange {
     background: #ffc107;
     color: #1a1a2e;
 }
-
 .task .btn-go.orange:hover {
     background: #e0a800;
-}
-
-.note {
-    background: #e8f0fe;
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 20px;
-    text-align: center;
-    color: #1a1a2e;
-    font-size: 0.95em;
-    border: 1px solid #1877f2;
-}
-
-.note strong {
-    color: #1877f2;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
 }
 
 .badge {
@@ -150,6 +161,22 @@ h1 {
     background: #dc3545;
 }
 
+.note {
+    background: #e8f0fe;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+    color: #1a1a2e;
+    font-size: 0.95em;
+    border: 1px solid #1877f2;
+}
+
+.note strong {
+    color: #1877f2;
+}
+
+/* تكيف مع الموبايل */
 @media (max-width: 600px) {
     .task {
         flex-wrap: wrap;
@@ -165,5 +192,8 @@ h1 {
     .task .btn-go {
         width: 100%;
         padding: 12px;
+    }
+    .container {
+        padding: 20px;
     }
 }

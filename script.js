@@ -1,3 +1,4 @@
+// ===================== البيانات =====================
 const tasks = [
     {
         icon: '🔐',
@@ -55,3 +56,55 @@ const tasks = [
         special: true
     }
 ];
+
+// ===================== عرض المهام =====================
+function renderTasks() {
+    const container = document.getElementById('taskList');
+    let html = '';
+
+    tasks.forEach((task, index) => {
+        const btnClass = task.btnClass ? `btn-go ${task.btnClass}` : 'btn-go';
+        const badgeHtml = task.badge ? `<span class="badge ${task.badgeClass}">${task.badge}</span>` : '';
+
+        html += `
+            <div class="task">
+                <div class="info">
+                    <span class="icon">${task.icon}</span>
+                    <span class="name">${task.name}</span>
+                    <span class="what-to-click">${task.click}</span>
+                    ${badgeHtml}
+                </div>
+                <a href="${task.link}" 
+                   target="_blank" 
+                   class="${btnClass}"
+                   onclick="return openLink(event, '${task.link}', '${task.name}')">
+                    👉 افتح
+                </a>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+// ===================== دالة فتح الرابط =====================
+function openLink(event, url, taskName) {
+    // تأكد إن المستخدم عايز يفتح الرابط
+    const confirmMsg = 
+        `🔐 تأكد إنك مسجل دخولك في فيسبوك على هذا المتصفح.\n` +
+        `لو مش متأكد، افتح فيسبوك في علامة تبويب جديدة أولاً.\n\n` +
+        `📌 هتفتح: ${taskName}\n` +
+        `🔗 الرابط: ${url}\n\n` +
+        `اضغط "موافق" للاستمرار.`;
+
+    if (!confirm(confirmMsg)) {
+        event.preventDefault();
+        return false;
+    }
+
+    // سماح بفتح الرابط في تبويب جديد
+    return true;
+}
+
+// ===================== تشغيل =====================
+document.addEventListener('DOMContentLoaded', renderTasks);
