@@ -3,43 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛡️ المرشد الأمني الذكي</title>
+    <title>🛡️ مساعد أمان فيسبوك</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>🛡️ المرشد الأمني الذكي</h1>
-        <p class="subtitle">✅ راقب حسابك وتأكد من أمانه</p>
+        <!-- الهيدر -->
+        <header>
+            <h1>🛡️ مساعد أمان فيسبوك</h1>
+            <p class="subtitle">خلينا نأمّن حسابك خطوة بخطوة</p>
+        </header>
 
-        <!-- لوحة التحكم -->
-        <div class="dashboard">
-            <div class="status-card safe">
-                <span class="status-icon">🟢</span>
+        <!-- Dashboard -->
+        <section class="dashboard">
+            <div class="score-card">
+                <div class="score-circle" id="scoreCircle">
+                    <span id="scoreNumber">0</span>
+                    <span class="score-label">%</span>
+                </div>
                 <div>
-                    <strong>حالة الحساب</strong>
-                    <span id="accountStatus">جاري الفحص...</span>
+                    <div id="scoreStatus" class="score-status">جاري التقييم...</div>
+                    <div class="score-detail">آخر تحديث: <span id="lastUpdate">الآن</span></div>
                 </div>
             </div>
-            <div class="status-card">
-                <span class="status-icon">📊</span>
-                <div>
-                    <strong>آخر فحص</strong>
-                    <span id="lastCheck">الآن</span>
+            <div class="progress-card">
+                <div class="progress-label">
+                    <span>التقدم</span>
+                    <span id="progressText">0 / 0</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-stats">
+                    <span>✅ <span id="completedCount">0</span> مكتملة</span>
+                    <span>⏳ <span id="pendingCount">0</span> متبقية</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- زر الفحص السريع -->
-        <button id="scanBtn" class="scan-btn">🔍 افحص حسابي الآن</button>
+        <!-- زر إعادة تعيين -->
+        <button id="resetBtn" class="reset-btn">🔄 إعادة تعيين التقدم</button>
 
         <!-- قائمة المهام -->
-        <div id="taskList"></div>
+        <section class="task-section">
+            <h2>📋 قائمة المهام الأمنية</h2>
+            <div id="taskList"></div>
+        </section>
 
-        <!-- نتائج المراقبة -->
-        <div id="monitorResults" class="monitor-results"></div>
+        <!-- زر فحص سريع -->
+        <button id="quickScanBtn" class="scan-btn">🔍 فحص سريع</button>
+
+        <!-- ملخص -->
+        <div id="summaryBox" class="summary-box" style="display:none;">
+            <h3>📊 ملخص الأمان</h3>
+            <div id="summaryContent"></div>
+        </div>
 
         <div class="note">
-            💡 <strong>المهم:</strong> الأداة تراقب إعداداتك وتنبهك لو في أي مشكلة!
+            💡 <strong>ملاحظة:</strong> يتم حفظ تقدمك تلقائيًا في متصفحك.
+            لن نطلب منك كلمة السر أبدًا.
         </div>
     </div>
     <script src="script.js"></script>

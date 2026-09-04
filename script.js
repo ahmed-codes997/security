@@ -1,124 +1,107 @@
 // ===================== البيانات =====================
-const tasks = [
+const tasksData = [
     {
+        id: '2fa',
         icon: '🔐',
         name: 'المصادقة الثنائية',
-        click: '👉 فعّل 2FA',
-        badge: 'آخر خطوة',
-        badgeClass: '',
-        link: 'https://www.facebook.com/settings?tab=security&section=two_factor&ref=sec',
-        btnClass: '',
-        check: () => check2FA() // دالة المراقبة
+        priority: 'critical',
+        priorityLabel: '🔴 حرج',
+        why: 'حتى لو شخص عرف كلمة السر، سيحتاج عامل تحقق إضافي للدخول.',
+        link: 'https://www.facebook.com/settings?tab=security&section=two_factor&ref=sec'
     },
     {
+        id: 'sessions',
         icon: '📱',
-        name: 'مراجعة الأجهزة',
-        click: '👉 اخلع الغريب',
-        badge: 'شوف واخلع',
-        badgeClass: 'red',
-        link: 'https://www.facebook.com/settings?tab=security&section=sessions&ref=sec',
-        btnClass: 'green',
-        check: () => checkDevices()
+        name: 'مراجعة الأجهزة المتصلة',
+        priority: 'high',
+        priorityLabel: '🟠 عالي',
+        why: 'قد يكون هناك جهاز غير معروف متصل بحسابك دون علمك.',
+        link: 'https://www.facebook.com/settings?tab=security&section=sessions&ref=sec'
     },
     {
+        id: 'alerts',
         icon: '🔔',
         name: 'تنبيهات الدخول',
-        click: '👉 فعّل التنبيهات',
-        badge: 'آخر خطوة',
-        badgeClass: '',
-        link: 'https://www.facebook.com/settings?tab=security&section=login_alerts&ref=sec',
-        btnClass: '',
-        check: () => checkAlerts()
+        priority: 'high',
+        priorityLabel: '🟠 عالي',
+        why: 'ستصلك إشعارات فورية عند محاولة الدخول من جهاز جديد.',
+        link: 'https://www.facebook.com/settings?tab=security&section=login_alerts&ref=sec'
     },
     {
+        id: 'password',
         icon: '🔑',
         name: 'تغيير كلمة المرور',
-        click: '👉 غير كلمة السر',
-        badge: 'آخر خطوة',
-        badgeClass: 'orange',
-        link: 'https://www.facebook.com/settings?tab=security&section=password&ref=sec',
-        btnClass: 'orange',
-        check: () => checkPassword()
+        priority: 'critical',
+        priorityLabel: '🔴 حرج',
+        why: 'استخدم كلمة مرور قوية (حروف كبيرة وصغيرة وأرقام ورموز) ولا تعيد استخدامها.',
+        link: 'https://www.facebook.com/settings?tab=security&section=password&ref=sec'
     },
     {
+        id: 'admins',
         icon: '👥',
         name: 'إدارة الأدمن',
-        click: '👉 شيل الزيادة',
-        badge: 'شيل الزيادة',
-        badgeClass: 'red',
-        link: 'https://www.facebook.com/settings?tab=admin&ref=sec',
-        btnClass: 'green',
-        check: () => checkAdmins()
+        priority: 'high',
+        priorityLabel: '🟠 عالي',
+        why: 'تأكد من أن الأشخاص الذين لديهم صلاحيات إدارة هم فقط من تثق بهم.',
+        link: 'https://www.facebook.com/settings?tab=admin&ref=sec'
     },
     {
+        id: 'apps',
+        icon: '🔗',
+        name: 'مراجعة التطبيقات المرتبطة',
+        priority: 'medium',
+        priorityLabel: '🟡 متوسط',
+        why: 'قد تكون التطبيقات القديمة مرتبطة بحسابك وتستطيع الوصول لبياناتك.',
+        link: 'https://www.facebook.com/settings?tab=applications&ref=sec'
+    },
+    {
+        id: 'email',
+        icon: '📧',
+        name: 'تأمين البريد الإلكتروني',
+        priority: 'critical',
+        priorityLabel: '🔴 حرج',
+        why: 'البريد الإلكتروني هو مفتاح إعادة تعيين كلمة السر، تأكد من أنه آمن.',
+        link: 'https://www.facebook.com/settings?tab=email&ref=sec'
+    },
+    {
+        id: 'checkup',
         icon: '✅',
-        name: 'الفحص الأمني',
-        click: '👉 اتبع التعليمات',
-        badge: 'آخر خطوة',
-        badgeClass: 'orange',
-        link: 'https://www.facebook.com/securitycheckup/?ref=sec',
-        btnClass: 'orange',
-        special: true,
-        check: () => checkSecurity()
+        name: 'الفحص الأمني الشامل',
+        priority: 'recommended',
+        priorityLabel: '🟢 موصى به',
+        why: 'فحص شامل من فيسبوك يكشف الثغرات ويقترح إصلاحات.',
+        link: 'https://www.facebook.com/securitycheckup/?ref=sec'
     }
 ];
 
-// ===================== دوال المراقبة (محاكاة) =====================
-// في الواقع، لازم تكون متصلة بـ API فيسبوك، لكن هنا بنحاكي النتائج
+// ===================== الحالة =====================
+let progress = loadProgress();
 
-function check2FA() {
-    // محاكاة: 80% من المستخدمين مفعلين 2FA
-    const isActive = Math.random() > 0.2;
-    return {
-        status: isActive ? 'pass' : 'fail',
-        message: isActive ? '✅ المصادقة الثنائية مفعلة' : '⚠️ المصادقة الثنائية غير مفعلة!',
-        emoji: isActive ? '✅' : '❌'
-    };
+// ===================== دوال الحفظ والتحميل =====================
+function loadProgress() {
+    try {
+        const saved = localStorage.getItem('fb_security_progress');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            // التأكد من أن كل المهام موجودة
+            tasksData.forEach(task => {
+                if (!(task.id in parsed)) {
+                    parsed[task.id] = false;
+                }
+            });
+            return parsed;
+        }
+    } catch (e) {
+        console.warn('فشل تحميل التقدم', e);
+    }
+    // تهيئة جديدة
+    const initial = {};
+    tasksData.forEach(task => { initial[task.id] = false; });
+    return initial;
 }
 
-function checkDevices() {
-    const hasUnknown = Math.random() > 0.7;
-    return {
-        status: hasUnknown ? 'warn' : 'pass',
-        message: hasUnknown ? '⚠️ يوجد جهاز غير معروف متصل!' : '✅ كل الأجهزة معروفة',
-        emoji: hasUnknown ? '⚠️' : '✅'
-    };
-}
-
-function checkAlerts() {
-    const isActive = Math.random() > 0.15;
-    return {
-        status: isActive ? 'pass' : 'fail',
-        message: isActive ? '✅ تنبيهات الدخول مفعلة' : '⚠️ تنبيهات الدخول غير مفعلة!',
-        emoji: isActive ? '✅' : '❌'
-    };
-}
-
-function checkPassword() {
-    const isStrong = Math.random() > 0.3;
-    return {
-        status: isStrong ? 'pass' : 'warn',
-        message: isStrong ? '✅ كلمة المرور قوية' : '⚠️ يُفضل تغيير كلمة المرور',
-        emoji: isStrong ? '✅' : '⚠️'
-    };
-}
-
-function checkAdmins() {
-    const hasExtra = Math.random() > 0.8;
-    return {
-        status: hasExtra ? 'warn' : 'pass',
-        message: hasExtra ? '⚠️ يوجد أدمن إضافي غير معروف!' : '✅ الأدمن مضبوط',
-        emoji: hasExtra ? '⚠️' : '✅'
-    };
-}
-
-function checkSecurity() {
-    const isSecure = Math.random() > 0.1;
-    return {
-        status: isSecure ? 'pass' : 'fail',
-        message: isSecure ? '✅ الحساب آمن' : '⚠️ يوجد ثغرات أمنية!',
-        emoji: isSecure ? '✅' : '❌'
-    };
+function saveProgress() {
+    localStorage.setItem('fb_security_progress', JSON.stringify(progress));
 }
 
 // ===================== عرض المهام =====================
@@ -126,118 +109,200 @@ function renderTasks() {
     const container = document.getElementById('taskList');
     let html = '';
 
-    tasks.forEach((task) => {
-        const btnClass = task.btnClass ? `btn-go ${task.btnClass}` : 'btn-go';
-        const badgeHtml = task.badge ? `<span class="badge ${task.badgeClass}">${task.badge}</span>` : '';
+    // ترتيب حسب الأولوية
+    const priorityOrder = { critical: 0, high: 1, medium: 2, recommended: 3 };
+    const sorted = [...tasksData].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
+
+    sorted.forEach(task => {
+        const isDone = progress[task.id] || false;
+        const doneClass = isDone ? 'completed' : '';
 
         html += `
-            <div class="task" id="task-${task.name}">
-                <div class="info">
-                    <span class="icon">${task.icon}</span>
-                    <span class="name">${task.name}</span>
-                    <span class="what-to-click">${task.click}</span>
-                    ${badgeHtml}
-                    <span class="check-status" id="status-${task.name}">⏳</span>
+            <div class="task ${doneClass}" id="task-${task.id}">
+                <div class="task-main">
+                    <span class="task-icon">${task.icon}</span>
+                    <span class="task-name">${task.name}</span>
+                    <span class="task-priority ${task.priority}">${task.priorityLabel}</span>
+                    <div class="task-actions">
+                        <a href="${task.link}" target="_blank" class="task-btn open">🔗 افتح</a>
+                        <button class="task-btn done ${isDone ? 'completed-btn' : ''}" 
+                                onclick="toggleTask('${task.id}')">
+                            ${isDone ? '✅ تم' : '☑️ أنجزت'}
+                        </button>
+                        <button class="task-btn" style="background:#e8f0fe;color:#1877f2;" 
+                                onclick="toggleWhy('${task.id}')">
+                            ℹ️
+                        </button>
+                    </div>
                 </div>
-                <a href="${task.link}" 
-                   target="_blank" 
-                   class="${btnClass}"
-                   onclick="return openLink(event, '${task.link}', '${task.name}')">
-                    👉 افتح
-                </a>
+                <div class="task-why" id="why-${task.id}">
+                    <strong>لماذا؟</strong> ${task.why}
+                </div>
             </div>
         `;
     });
 
     container.innerHTML = html;
+    updateDashboard();
 }
 
-// ===================== فتح الرابط =====================
-function openLink(event, url, taskName) {
-    const confirmMsg = 
-        `🔐 تأكد إنك مسجل دخولك في فيسبوك.\n` +
-        `📌 هتفتح: ${taskName}\n\n` +
-        `اضغط "موافق" للاستمرار.`;
+// ===================== تبديل حالة المهمة =====================
+function toggleTask(id) {
+    progress[id] = !progress[id];
+    saveProgress();
+    renderTasks();
+    updateDashboard();
+}
 
-    if (!confirm(confirmMsg)) {
-        event.preventDefault();
-        return false;
+// ===================== إظهار/إخفاء شرح "لماذا" =====================
+function toggleWhy(id) {
+    const el = document.getElementById(`why-${id}`);
+    el.classList.toggle('show');
+}
+
+// ===================== تحديث لوحة التحكم =====================
+function updateDashboard() {
+    const total = tasksData.length;
+    const completed = tasksData.filter(t => progress[t.id]).length;
+    const pending = total - completed;
+    const score = Math.round((completed / total) * 100);
+
+    // النسبة المئوية
+    document.getElementById('scoreNumber').textContent = score;
+    document.getElementById('progressText').textContent = `${completed} / ${total}`;
+    document.getElementById('completedCount').textContent = completed;
+    document.getElementById('pendingCount').textContent = pending;
+
+    // شريط التقدم
+    document.getElementById('progressFill').style.width = `${score}%`;
+
+    // الدائرة
+    document.querySelector('.score-circle').style.setProperty('--score', `${score}%`);
+
+    // الحالة
+    const statusEl = document.getElementById('scoreStatus');
+    if (score === 100) {
+        statusEl.textContent = '🟢 حسابك آمن بالكامل!';
+        statusEl.className = 'score-status secure';
+    } else if (score >= 70) {
+        statusEl.textContent = '🟡 أمان جيد، يحتاج تحسينات';
+        statusEl.className = 'score-status medium';
+    } else {
+        statusEl.textContent = '🔴 حسابك يحتاج اهتمام فوري!';
+        statusEl.className = 'score-status weak';
     }
-    return true;
+
+    // آخر تحديث
+    document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+
+    // تحديث الملخص
+    updateSummary();
 }
 
-// ===================== وظيفة الفحص =====================
-function scanAccount() {
-    const btn = document.getElementById('scanBtn');
+// ===================== الملخص =====================
+function updateSummary() {
+    const box = document.getElementById('summaryBox');
+    const content = document.getElementById('summaryContent');
+    
+    const critical = tasksData.filter(t => t.priority === 'critical');
+    const high = tasksData.filter(t => t.priority === 'high');
+    const medium = tasksData.filter(t => t.priority === 'medium');
+    const recommended = tasksData.filter(t => t.priority === 'recommended');
+
+    const criticalDone = critical.filter(t => progress[t.id]).length;
+    const highDone = high.filter(t => progress[t.id]).length;
+    const mediumDone = medium.filter(t => progress[t.id]).length;
+    const recommendedDone = recommended.filter(t => progress[t.id]).length;
+
+    const total = tasksData.length;
+    const completed = tasksData.filter(t => progress[t.id]).length;
+    const pending = total - completed;
+
+    if (completed > 0) {
+        box.style.display = 'block';
+        content.innerHTML = `
+            <div class="summary-item">
+                <span>🔴 حرج:</span>
+                <span class="s-status ${criticalDone === critical.length ? 'pass' : 'fail'}">
+                    ${criticalDone} / ${critical.length} مكتملة
+                </span>
+            </div>
+            <div class="summary-item">
+                <span>🟠 عالي:</span>
+                <span class="s-status ${highDone === high.length ? 'pass' : 'fail'}">
+                    ${highDone} / ${high.length} مكتملة
+                </span>
+            </div>
+            <div class="summary-item">
+                <span>🟡 متوسط:</span>
+                <span class="s-status ${mediumDone === medium.length ? 'pass' : 'fail'}">
+                    ${mediumDone} / ${medium.length} مكتملة
+                </span>
+            </div>
+            <div class="summary-item">
+                <span>🟢 موصى به:</span>
+                <span class="s-status ${recommendedDone === recommended.length ? 'pass' : 'fail'}">
+                    ${recommendedDone} / ${recommended.length} مكتملة
+                </span>
+            </div>
+            <hr style="margin:10px 0;border-color:#ddd;">
+            <div class="summary-item">
+                <strong>الإجمالي:</strong>
+                <strong>${completed} / ${total} مكتملة</strong>
+            </div>
+            <div class="summary-item">
+                <strong>الأمان:</strong>
+                <strong style="color:${score >= 70 ? '#28a745' : '#dc3545'}">
+                    ${score}%
+                </strong>
+            </div>
+        `;
+    } else {
+        box.style.display = 'none';
+    }
+}
+
+// ===================== الفحص السريع =====================
+function quickScan() {
+    const btn = document.getElementById('quickScanBtn');
     btn.disabled = true;
     btn.textContent = '⏳ جاري الفحص...';
 
-    const resultsContainer = document.getElementById('monitorResults');
-    resultsContainer.classList.remove('show');
-    resultsContainer.innerHTML = '';
-
-    // تحديث حالة الحساب
-    document.getElementById('accountStatus').textContent = 'جاري الفحص...';
-
-    // محاكاة وقت الفحص
+    // محاكاة فحص
     setTimeout(() => {
-        let allPass = true;
-        let resultsHtml = '<h3>📋 نتائج الفحص:</h3>';
-
-        tasks.forEach((task) => {
-            if (task.check) {
-                const result = task.check();
-                const statusEl = document.getElementById(`status-${task.name}`);
-                
-                if (statusEl) {
-                    statusEl.textContent = result.emoji;
-                    statusEl.style.color = result.status === 'pass' ? '#28a745' : 
-                                          result.status === 'warn' ? '#ffc107' : '#dc3545';
-                }
-
-                resultsHtml += `
-                    <div class="result-item">
-                        <span class="r-icon">${result.emoji}</span>
-                        <span>${task.icon} ${task.name}</span>
-                        <span class="r-status ${result.status}">${result.message}</span>
-                    </div>
-                `;
-
-                if (result.status !== 'pass') allPass = false;
-            }
-        });
-
-        // تحديث حالة الحساب العامة
-        const statusCard = document.querySelector('.status-card');
-        const statusText = document.getElementById('accountStatus');
-        
-        if (allPass) {
-            statusText.textContent = '🟢 آمن بالكامل';
-            statusCard.className = 'status-card safe';
-        } else {
-            statusText.textContent = '🟡 يحتاج انتباه';
-            statusCard.className = 'status-card warning';
-        }
-
-        document.getElementById('lastCheck').textContent = new Date().toLocaleTimeString();
-
-        // عرض النتائج
-        resultsContainer.innerHTML = resultsHtml;
-        resultsContainer.classList.add('show');
-
+        // محاكاة: بعض المهام تتغير عشوائيًا (للتوضيح)
+        // في الواقع، المستخدم هو اللي يحدد الإنجاز
+        updateDashboard();
         btn.disabled = false;
-        btn.textContent = '🔍 افحص حسابي الآن';
+        btn.textContent = '🔍 فحص سريع';
+        
+        // إظهار رسالة
+        const completed = tasksData.filter(t => progress[t.id]).length;
+        const total = tasksData.length;
+        alert(`✅ الفحص اكتمل!\nالمكتملة: ${completed} / ${total}\nنسبة الأمان: ${Math.round((completed/total)*100)}%`);
+    }, 1500);
+}
 
-    }, 2000);
+// ===================== إعادة تعيين التقدم =====================
+function resetProgress() {
+    if (confirm('⚠️ هل أنت متأكد؟ سيتم مسح كل التقدم المحفوظ.')) {
+        tasksData.forEach(task => { progress[task.id] = false; });
+        saveProgress();
+        renderTasks();
+        updateDashboard();
+    }
+}
+
+// ===================== حساب النتيجة =====================
+function getScore() {
+    const total = tasksData.length;
+    const completed = tasksData.filter(t => progress[t.id]).length;
+    return Math.round((completed / total) * 100);
 }
 
 // ===================== تشغيل =====================
 document.addEventListener('DOMContentLoaded', () => {
     renderTasks();
-    
-    // فحص تلقائي عند تحميل الصفحة
-    setTimeout(scanAccount, 500);
-
-    // ربط زر الفحص
-    document.getElementById('scanBtn').addEventListener('click', scanAccount);
+    document.getElementById('resetBtn').addEventListener('click', resetProgress);
+    document.getElementById('quickScanBtn').addEventListener('click', quickScan);
 });
