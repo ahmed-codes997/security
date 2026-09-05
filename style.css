@@ -40,6 +40,30 @@ h1 {
     margin: 5px 0 25px;
 }
 
+/* ===== Nav Links ===== */
+.nav-links {
+    margin-bottom: 20px;
+}
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+.nav-links a {
+    color: #1877f2;
+    text-decoration: none;
+    font-size: 0.9em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: #e8f0fe;
+}
+.nav-links a:hover {
+    background: #1877f2;
+    color: white;
+}
+
 /* ===== Dashboard ===== */
 .dashboard {
     display: grid;
@@ -175,7 +199,7 @@ h1 {
     opacity: 1;
 }
 .task.completed {
-    opacity: 0.7;
+    opacity: 0.75;
     border-right-color: #28a745;
 }
 .task.completed .task-name {
@@ -243,15 +267,21 @@ h1 {
 .task-btn.done:hover { background: #218838; }
 .task-btn.done.completed-btn { background: #6c757d; }
 
+.task-btn.info-btn {
+    background: #e8f0fe;
+    color: #1877f2;
+}
+
 .task-why {
     width: 100%;
-    margin-top: 8px;
-    padding: 10px 14px;
+    margin-top: 10px;
+    padding: 12px 14px;
     background: #e8f0fe;
     border-radius: 8px;
     font-size: 0.9em;
     color: #1a1a2e;
     display: none;
+    line-height: 1.5;
 }
 .task-why.show { display: block; }
 .task-why strong { color: #1877f2; }
@@ -273,6 +303,10 @@ h1 {
 .scan-btn:hover {
     transform: scale(1.02);
     box-shadow: 0 6px 20px rgba(24,119,242,0.4);
+}
+.scan-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
 }
 
 /* ===== Summary ===== */
@@ -309,6 +343,7 @@ h1 {
     color: #1a1a2e;
     font-size: 0.9em;
     border: 1px solid #1877f2;
+    line-height: 1.6;
 }
 .note strong { color: #1877f2; }
 

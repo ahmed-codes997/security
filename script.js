@@ -6,26 +6,9 @@ const tasksData = [
         name: 'المصادقة الثنائية',
         priority: 'critical',
         priorityLabel: '🔴 حرج',
-        why: 'حتى لو شخص عرف كلمة السر، سيحتاج عامل تحقق إضافي للدخول.',
-        link: 'https://www.facebook.com/settings?tab=security&section=two_factor&ref=sec'
-    },
-    {
-        id: 'sessions',
-        icon: '📱',
-        name: 'مراجعة الأجهزة المتصلة',
-        priority: 'high',
-        priorityLabel: '🟠 عالي',
-        why: 'قد يكون هناك جهاز غير معروف متصل بحسابك دون علمك.',
-        link: 'https://www.facebook.com/settings?tab=security&section=sessions&ref=sec'
-    },
-    {
-        id: 'alerts',
-        icon: '🔔',
-        name: 'تنبيهات الدخول',
-        priority: 'high',
-        priorityLabel: '🟠 عالي',
-        why: 'ستصلك إشعارات فورية عند محاولة الدخول من جهاز جديد.',
-        link: 'https://www.facebook.com/settings?tab=security&section=login_alerts&ref=sec'
+        why: 'حتى لو شخص عرف كلمة السر، سيحتاج عامل تحقق إضافي للدخول. ده أهم إعداد أمني على الإطلاق.',
+        how: 'اضغط "افتح" → هتفتح صفحة المصادقة الثنائية مباشرة. فعّل "تطبيق المصادقة" أو "رسالة نصية"، بعدين ارجع واضغط "أكدت إنني عملتها".',
+        link: 'https://accountscenter.facebook.com/password_and_security/two_factor'
     },
     {
         id: 'password',
@@ -33,26 +16,9 @@ const tasksData = [
         name: 'تغيير كلمة المرور',
         priority: 'critical',
         priorityLabel: '🔴 حرج',
-        why: 'استخدم كلمة مرور قوية (حروف كبيرة وصغيرة وأرقام ورموز) ولا تعيد استخدامها.',
-        link: 'https://www.facebook.com/settings?tab=security&section=password&ref=sec'
-    },
-    {
-        id: 'admins',
-        icon: '👥',
-        name: 'إدارة الأدمن',
-        priority: 'high',
-        priorityLabel: '🟠 عالي',
-        why: 'تأكد من أن الأشخاص الذين لديهم صلاحيات إدارة هم فقط من تثق بهم.',
-        link: 'https://www.facebook.com/settings?tab=admin&ref=sec'
-    },
-    {
-        id: 'apps',
-        icon: '🔗',
-        name: 'مراجعة التطبيقات المرتبطة',
-        priority: 'medium',
-        priorityLabel: '🟡 متوسط',
-        why: 'قد تكون التطبيقات القديمة مرتبطة بحسابك وتستطيع الوصول لبياناتك.',
-        link: 'https://www.facebook.com/settings?tab=applications&ref=sec'
+        why: 'استخدم كلمة مرور قوية (حروف كبيرة وصغيرة + أرقام + رموز) وما تعيدش استخدامها في مواقع تانية.',
+        how: 'اضغط "افتح" → غيّر كلمة المرور لكلمة قوية وجديدة، بعدين ارجع واضغط "أكدت إنني عملتها".',
+        link: 'https://accountscenter.facebook.com/password_and_security/password'
     },
     {
         id: 'email',
@@ -60,8 +26,49 @@ const tasksData = [
         name: 'تأمين البريد الإلكتروني',
         priority: 'critical',
         priorityLabel: '🔴 حرج',
-        why: 'البريد الإلكتروني هو مفتاح إعادة تعيين كلمة السر، تأكد من أنه آمن.',
-        link: 'https://www.facebook.com/settings?tab=email&ref=sec'
+        why: 'البريد الإلكتروني هو مفتاح إعادة تعيين كلمة السر. لو اتهكر، الحساب كله في خطر.',
+        how: 'اضغط "افتح" → تأكد إن الإيميل صحيح ومفعّل، ولو تقدر فعّل التحقق الثنائي على الإيميل نفسه.',
+        link: 'https://accountscenter.facebook.com/personal_info/contact_points'
+    },
+    {
+        id: 'sessions',
+        icon: '📱',
+        name: 'مراجعة الأجهزة المتصلة',
+        priority: 'high',
+        priorityLabel: '🟠 عالي',
+        why: 'قد يكون في جهاز أو متصفح قديم متصل بحسابك من غير ما تعرف.',
+        how: 'اضغط "افتح" → شوف قائمة الأجهزة. لو لقيت جهاز مش بتعرفه اضغط "تسجيل الخروج" منه.',
+        link: 'https://accountscenter.facebook.com/password_and_security/login_activity'
+    },
+    {
+        id: 'alerts',
+        icon: '🔔',
+        name: 'تنبيهات الدخول',
+        priority: 'high',
+        priorityLabel: '🟠 عالي',
+        why: 'هتوصلك إشعارات فورية لو حد حاول يدخل من جهاز جديد.',
+        how: 'اضغط "افتح" → فعّل تنبيهات الدخول (إشعارات + إيميل) عشان تعرف بأي محاولة دخول جديدة.',
+        link: 'https://accountscenter.facebook.com/password_and_security'
+    },
+    {
+        id: 'admins',
+        icon: '👥',
+        name: 'إدارة الأدمن',
+        priority: 'high',
+        priorityLabel: '🟠 عالي',
+        why: 'تأكد إن الأشخاص اللي عندهم صلاحيات إدارة الصفحة أو الحساب هم بس اللي بتثق فيهم.',
+        how: 'اضغط "افتح" → راجع قائمة الأدمن والمشرفين، واحذف أي حد مش عايزه.',
+        link: 'https://www.facebook.com/settings?tab=admin'
+    },
+    {
+        id: 'apps',
+        icon: '🔗',
+        name: 'مراجعة التطبيقات المرتبطة',
+        priority: 'medium',
+        priorityLabel: '🟡 متوسط',
+        why: 'تطبيقات قديمة ممكن تكون لسه متصلة بحسابك وتقدر توصل لبياناتك.',
+        how: 'اضغط "افتح" → شوف التطبيقات المرتبطة واحذف أي تطبيق مش بتستخدمه.',
+        link: 'https://www.facebook.com/settings?tab=applications'
     },
     {
         id: 'checkup',
@@ -69,8 +76,9 @@ const tasksData = [
         name: 'الفحص الأمني الشامل',
         priority: 'recommended',
         priorityLabel: '🟢 موصى به',
-        why: 'فحص شامل من فيسبوك يكشف الثغرات ويقترح إصلاحات.',
-        link: 'https://www.facebook.com/securitycheckup/?ref=sec'
+        why: 'فحص رسمي من فيسبوك بيجمع أهم الإعدادات الأمنية ويقترح عليك اللي ناقص.',
+        how: 'اضغط "افتح" → اتبع الخطوات اللي فيسبوك هيعرضها عليك. ده ملخص سريع لكل حاجة.',
+        link: 'https://www.facebook.com/securitycheckup'
     }
 ];
 
@@ -124,19 +132,20 @@ function renderTasks() {
                     <span class="task-name">${task.name}</span>
                     <span class="task-priority ${task.priority}">${task.priorityLabel}</span>
                     <div class="task-actions">
-                        <a href="${task.link}" target="_blank" class="task-btn open">🔗 افتح</a>
+                        <a href="${task.link}" target="_blank" rel="noopener" class="task-btn open">🔗 افتح</a>
                         <button class="task-btn done ${isDone ? 'completed-btn' : ''}" 
                                 onclick="toggleTask('${task.id}')">
-                            ${isDone ? '✅ تم' : '☑️ أنجزت'}
+                            ${isDone ? '✅ تم التأكيد' : '☑️ أكدت إنني عملتها'}
                         </button>
-                        <button class="task-btn" style="background:#e8f0fe;color:#1877f2;" 
+                        <button class="task-btn info-btn" 
                                 onclick="toggleWhy('${task.id}')">
                             ℹ️
                         </button>
                     </div>
                 </div>
                 <div class="task-why" id="why-${task.id}">
-                    <strong>لماذا؟</strong> ${task.why}
+                    <p><strong>لماذا مهم؟</strong> ${task.why}</p>
+                    <p style="margin-top:8px;"><strong>إزاي تعمله؟</strong> ${task.how}</p>
                 </div>
             </div>
         `;
@@ -177,7 +186,10 @@ function updateDashboard() {
     document.getElementById('progressFill').style.width = `${score}%`;
 
     // الدائرة
-    document.querySelector('.score-circle').style.setProperty('--score', `${score}%`);
+    const circle = document.querySelector('.score-circle');
+    if (circle) {
+        circle.style.setProperty('--score', `${score}%`);
+    }
 
     // الحالة
     const statusEl = document.getElementById('scoreStatus');
@@ -193,7 +205,7 @@ function updateDashboard() {
     }
 
     // آخر تحديث
-    document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+    document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('ar-EG');
 
     // تحديث الملخص
     updateSummary();
@@ -216,7 +228,7 @@ function updateSummary() {
 
     const total = tasksData.length;
     const completed = tasksData.filter(t => progress[t.id]).length;
-    const pending = total - completed;
+    const score = Math.round((completed / total) * 100);
 
     if (completed > 0) {
         box.style.display = 'block';
@@ -268,19 +280,15 @@ function quickScan() {
     btn.disabled = true;
     btn.textContent = '⏳ جاري الفحص...';
 
-    // محاكاة فحص
     setTimeout(() => {
-        // محاكاة: بعض المهام تتغير عشوائيًا (للتوضيح)
-        // في الواقع، المستخدم هو اللي يحدد الإنجاز
         updateDashboard();
         btn.disabled = false;
         btn.textContent = '🔍 فحص سريع';
         
-        // إظهار رسالة
         const completed = tasksData.filter(t => progress[t.id]).length;
         const total = tasksData.length;
         alert(`✅ الفحص اكتمل!\nالمكتملة: ${completed} / ${total}\nنسبة الأمان: ${Math.round((completed/total)*100)}%`);
-    }, 1500);
+    }, 1200);
 }
 
 // ===================== إعادة تعيين التقدم =====================
@@ -291,13 +299,6 @@ function resetProgress() {
         renderTasks();
         updateDashboard();
     }
-}
-
-// ===================== حساب النتيجة =====================
-function getScore() {
-    const total = tasksData.length;
-    const completed = tasksData.filter(t => progress[t.id]).length;
-    return Math.round((completed / total) * 100);
 }
 
 // ===================== تشغيل =====================
